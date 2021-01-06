@@ -3,7 +3,6 @@ package cn.jhmarryme.excel.duty.service;
 import cn.jhmarryme.excel.duty.entity.Coder;
 import cn.jhmarryme.excel.duty.entity.CoderExcel;
 import cn.jhmarryme.excel.duty.entity.News;
-import cn.jhmarryme.excel.duty.entity.TianApiJiejiariResult;
 import cn.jhmarryme.excel.duty.entity.vo.DutyInfoRequestVO;
 import cn.jhmarryme.excel.duty.util.RedisUtil;
 import com.alibaba.excel.EasyExcel;
@@ -151,10 +150,8 @@ public class DutyInfoService {
             String httpArg = "key=1c5835b88ebba7b674891d603c69e72f&date=" + date + "&type=2";
             String jsonResult = request(httpUrl, httpArg);
 
-            Gson gson = new Gson();
-
-            TianApiJiejiariResult result = gson.fromJson(jsonResult, TianApiJiejiariResult.class);
-            redisUtil.hset(String.valueOf(year), date, result.getNewslist());
+            List<News> newsList = handleJsonResult(jsonResult);
+            redisUtil.hset(String.valueOf(year), date, newsList);
             startDate = startDate.with(TemporalAdjusters.firstDayOfNextMonth());
             System.out.println(date + "\n" + jsonResult);
             System.out.println("=======================");

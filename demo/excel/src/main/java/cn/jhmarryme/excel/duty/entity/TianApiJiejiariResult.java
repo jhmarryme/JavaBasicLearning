@@ -13,9 +13,9 @@ import java.util.List;
  */
 @Data
 @ToString
-public class TianApiJiejiariResult {
+public class TianApiJiejiariResult<T> {
 
     private String code;
     private String msg;
-    private List<News> newslist;
+    private List<T> newslist;
 }
