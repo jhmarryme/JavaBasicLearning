@@ -6,7 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import java.util.Collection;
 
 /**
- * description: 认证后的token信息
+ * description: 认证后的token信息 参考{@code UsernamePasswordAuthenticationToken} 编写
  * @author: JiaHao Wang
  * @date: 2020/12/7 12:20
  * @modified By:

@@ -13,6 +13,9 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public enum SingletonWithEnum {
+    /**
+     * 实例对象
+     */
     INSTANCE;
 
     public String leaveTheBuilding() {

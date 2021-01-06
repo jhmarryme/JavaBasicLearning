@@ -9,7 +9,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
- * description:
+ * description: 需要实现 {@code AuthenticationProvider}
+ *
  * @author: JiaHao Wang
  * @date: 2020/12/7 21:10
  * @modified By:
@@ -34,11 +35,12 @@ public class SmsCodeAuthenticationProvider implements AuthenticationProvider {
         // 根据用户名加载用户信息
         UserDetails user = userDetailsService.loadUserByUsername((String) authentication.getPrincipal());
 
+        // 因为是短信登录, 所以只需要手机号对应的用户存在即可
         if (user == null) {
             throw new InternalAuthenticationServiceException("无法获取用户信息");
         }
 
-        // 组装token
+        // 组装 token
         SmsCodeAuthenticationToken authenticationToken = new SmsCodeAuthenticationToken(user,
                 user.getAuthorities());
         authenticationToken.setDetails(authentication.getDetails());

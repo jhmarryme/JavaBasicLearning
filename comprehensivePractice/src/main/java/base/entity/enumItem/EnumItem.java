@@ -1,17 +1,18 @@
-package javaBase.enumBase;
+package base.entity.enumItem;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /**
- * @author jhmarryme.cn
- * @date 2019/7/4 19:40
+ * description: 
+ * @author JiaHao Wang
+ * @date 2021/1/6 14:05
  */
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public enum EnumTest {
+public enum EnumItem {
 
     //test
     VALID_NAME(400, "wjh"),

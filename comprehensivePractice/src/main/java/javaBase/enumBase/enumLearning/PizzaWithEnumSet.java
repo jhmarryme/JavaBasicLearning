@@ -30,18 +30,27 @@ public class PizzaWithEnumSet {
     @NoArgsConstructor
     @AllArgsConstructor
     public enum PizzaStatusWithEnumSet {
+        /**  
+         * 预定
+         */
         ORDERED (5) {
             @Override
             public boolean isOrdered() {
                 return true;
             }
         },
+        /**  
+         * 就绪
+         */
         READY (2) {
             @Override
             public boolean isReady() {
                 return true;
             }
         },
+        /**  
+         * 已送达
+         */
         DELIVERED (0) {
             @Override
             public boolean isDelivered() {

@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.social.connect.web.HttpSessionSessionStrategy;
 import org.springframework.social.connect.web.SessionStrategy;
+import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.ServletRequestUtils;
@@ -38,11 +39,13 @@ import java.util.*;
  */
 @Data
 @Slf4j
+@Component("validateCodeFilter")
 public class ValidateCodeFilter extends OncePerRequestFilter implements InitializingBean {
 
     /**
      * 验证码校验失败处理器
      */
+    @Autowired
     private AuthenticationFailureHandler authenticationFailureHandler;
 
     /**
@@ -58,6 +61,7 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
     /**
      * 系统配置
      */
+    @Autowired
     private SecurityProperties securityProperties;
 
     /**

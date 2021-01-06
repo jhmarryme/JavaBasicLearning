@@ -3,6 +3,7 @@ package com.imooc.security.core.validate.code;
 import com.imooc.security.core.validate.code.base.ValidateCodeException;
 import com.imooc.security.core.validate.code.base.ValidateCodeTypeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import java.util.Map;
  * @date: 2020/12/28 12:35
  * @modified By:
  */
+@Component
 public class ValidateCodeProcessorHolder {
 
     @Autowired

@@ -4,11 +4,9 @@ import lombok.*;
 
 /**
  * description: 枚举的基本使用方法简单练习 - 枚举类型的属性,方法和构造函数
- * 1. 枚举的比较必须用==, 使用equals会出现问题
- *
- * @Author: Wjh
- * @Date: 2020/8/12 8:59
- * @Modified By:
+ *      1. 枚举的比较必须用==, 使用equals会出现问题
+ * @author Jiahao Wang
+ * @date 2020/8/12 8:59
  */
 @Data
 public class Pizza {
@@ -18,18 +16,27 @@ public class Pizza {
     @Getter
     @NoArgsConstructor
     public enum  PizzaStatus {
+        /**
+         * 预定
+         */
         ORDERED (5) {
             @Override
             public boolean isOrdered() {
                 return true;
             }
         },
+        /**
+         * 就绪
+         */
         READY (2) {
             @Override
             public boolean isReady() {
                 return true;
             }
         },
+        /**
+         * 已送达
+         */
         DELIVERED (0) {
             @Override
             public boolean isDelivered() {
@@ -52,22 +59,40 @@ public class Pizza {
         }
     }
 
-    /*
-     * description:  判断Pizza是否已经准备好
-     * @Param: []
-     * @Return: boolean
-     * @Author: Wjh
-     * @Date: 2020/8/12 9:44
-     * @Throws
+    /**
+     * 判断Pizza是否已经准备好
+     * <br/>
+     * @author Jiahao Wang
+     * @date 2020/8/12 9:44
+     * @return boolean
      */
     public boolean isDeliverable() {
         return this.status.isReady();
     }
 
+    /**
+     * 打印当前状态下, 提交需要的时间
+     * <br/>
+     * @author Jiahao Wang
+     * @date 2021/1/6 10:51
+     */
     public void printTimeToDeliver(){
-        // 打印当前状态下, 提交需要的时间
+        //
         System.out.println("Time to delivery is " +
                 this.getStatus().getTimeToDelivery());
+    }
+
+    /**
+     * 交付 Pizza
+     * <br/>
+     * @author Jiahao Wang
+     * @date 2021/1/6 10:36
+     */
+    public void deliver() {
+        if (isDeliverable()) {
+            PizzaDeliverySystemConfiguration.getInstance().getDeliveryStrategy().deliver(this);
+            this.setStatus(PizzaStatus.DELIVERED);
+        }
     }
 
 

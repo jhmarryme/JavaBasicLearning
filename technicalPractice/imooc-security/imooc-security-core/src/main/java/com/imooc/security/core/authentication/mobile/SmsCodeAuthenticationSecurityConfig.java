@@ -34,17 +34,21 @@ public class SmsCodeAuthenticationSecurityConfig extends SecurityConfigurerAdapt
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-
+        // 自定义的filter
         AbstractAuthenticationProcessingFilter smsCodeAuthenticationFilter = new SmsCodeAuthenticationFilter();
+
         // filter中需要设置AuthenticationManager
         smsCodeAuthenticationFilter.setAuthenticationManager(http.getSharedObject(AuthenticationManager.class));
 
+        // 失败/成功处理器
         smsCodeAuthenticationFilter.setAuthenticationSuccessHandler(imoocAuthenticationSuccessHandler);
         smsCodeAuthenticationFilter.setAuthenticationFailureHandler(imoocAuthenticationFailureHandler);
 
+        // 自定义的认证逻辑
         SmsCodeAuthenticationProvider smsCodeAuthenticationProvider = new SmsCodeAuthenticationProvider();
         smsCodeAuthenticationProvider.setUserDetailsService(userDetailsService);
 
+        // 添加配置
         http.authenticationProvider(smsCodeAuthenticationProvider)
                 .addFilterAfter(smsCodeAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
     }

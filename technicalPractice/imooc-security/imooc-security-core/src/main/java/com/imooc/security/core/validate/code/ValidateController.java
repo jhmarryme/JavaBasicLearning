@@ -21,6 +21,9 @@ public class ValidateController {
     @Autowired
     private Map<String, ValidateCodeProcessor> validateCodeProcessorMap;
 
+    @Autowired
+    private ValidateCodeProcessorHolder validateCodeProcessorHolder;
+
     /**
      * 创建验证码, 根据类型不同, 调用不同的 {@link ValidateCodeProcessor} 接口实现
      * <br/>
@@ -33,7 +36,7 @@ public class ValidateController {
      */
     @GetMapping("/code/{type}")
     public void imageCode(HttpServletRequest request, HttpServletResponse response, @PathVariable String type) throws Exception {
-        validateCodeProcessorMap.get(type + "CodeProcessor").create(new ServletWebRequest(request, response));
+        validateCodeProcessorHolder.findValidateCodeProcessor(type).create(new ServletWebRequest(request, response));
     }
 
 }

@@ -40,13 +40,13 @@ public class PizzaWithEnumMap {
 
     }
 
-    /*
-     * description: 根据不同的状态 将披萨分类存入map
-     * @Param: [pzList]
-     * @Return: java.util.EnumMap<javaBase.enumBase.enumLearning.Pizza.PizzaStatus,java.util.List<javaBase.enumBase.enumLearning.Pizza>>
-     * @Author: Wjh
-     * @Date: 2020/8/13 9:50
-     * @Throws 
+    /**
+     * 根据不同的状态 将披萨分类存入map
+     * <br/>
+     * @author Jiahao Wang
+     * @date 2020/8/13 9:50
+     * @param pzList
+     * @return java.util.EnumMap<javaBase.enumBase.enumLearning.Pizza.PizzaStatus, java.util.List < javaBase.enumBase.enumLearning.Pizza>>
      */
     private static EnumMap<Pizza.PizzaStatus, List<Pizza>> groupByPizzaStatus(List<Pizza> pzList) {
         EnumMap<Pizza.PizzaStatus, List<Pizza>> map = new EnumMap<>(Pizza.PizzaStatus.class);

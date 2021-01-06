@@ -11,14 +11,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * description: 参考UsernamePasswordAuthenticationFilter编写
+ * description: 参考{@code UsernamePasswordAuthenticationFilter} 编写
+ *      1. 修改匹配的路径
+ *      2. 修改登录参数 KEY, parameter. 因为是手机登录, 所以是"mobile"
+ *      3. 删除不需要的字段和方法
+ *      4. attemptAuthentication方法编写
  * @author: JiaHao Wang
  * @date: 2020/12/7 12:29
  * @modified By:
  */
 public class SmsCodeAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
-    public static final String SPRING_SECURITY_FORM_MOBILE = "mobile";
-    private String mobileParameter = SPRING_SECURITY_FORM_MOBILE;
+    public static final String SPRING_SECURITY_FORM_MOBILE_KEY = "mobile";
+    private String mobileParameter = SPRING_SECURITY_FORM_MOBILE_KEY;
     private boolean postOnly = true;
 
     public SmsCodeAuthenticationFilter() {
