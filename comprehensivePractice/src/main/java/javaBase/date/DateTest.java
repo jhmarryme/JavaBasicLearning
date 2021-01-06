@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjuster;
+import java.time.temporal.TemporalAdjusters;
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -73,6 +76,24 @@ public class DateTest {
         System.out.println("between.toMinutes() = " + between.toMinutes());
 
         System.out.println("Duration.between(LocalTime.now().minusMinutes(14), LocalTime.now()).toMinutes() = " + Duration.between(LocalTime.now().minusMinutes(14), LocalTime.now()).toMinutes());
+    }
+
+    @Test
+    public void localDateTest() {
+        System.out.println(LocalDate.now().with(TemporalAdjusters.firstDayOfMonth()));
+        System.out.println(LocalDate.now().with(TemporalAdjusters.firstDayOfNextMonth()));
+
+        System.out.println(LocalDate.now().getDayOfWeek().getValue());
+
+        System.out.println("LocalDate.now() = " + LocalDate.now());
+        System.out.println(LocalDate.now().getDayOfWeek());
+
+        Arrays.stream(DayOfWeek.values()).iterator().forEachRemaining(dayOfWeek -> {
+            System.out.println(dayOfWeek.getValue());
+        });
+
+
+        System.out.println("LocalDate.now().getMonth() = " + LocalDate.now().getMonth().getValue());
     }
 
 }
